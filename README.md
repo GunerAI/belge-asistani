@@ -57,7 +57,7 @@ Implemented **more than two** extra features:
 Clone the repository and set up your environment:
 
 ```bash
-git clone https://github.com/<your-username>/belge-asistani.git
+git clone https://github.com/GunerAI/belge-asistani.git
 cd belge-asistani
 ```
 
