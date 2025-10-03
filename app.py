@@ -28,10 +28,17 @@ from dotenv import load_dotenv
 # ─────────────────────────────────────────────────────────────────────────────
 # Setup & configuration
 # ─────────────────────────────────────────────────────────────────────────────
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# --- config & secrets ---
+load_dotenv()  # lets local .env work when you run `streamlit run app.py`
+
+OPENAI_API_KEY = (
+    os.getenv("OPENAI_API_KEY")              # local dev (.env)
+    or st.secrets.get("OPENAI_API_KEY")      # Streamlit Cloud
+)
+
 if not OPENAI_API_KEY:
-    raise RuntimeError("❌ Missing OPENAI_API_KEY. Please add it to your .env file.")
+    st.error("⚠️ OPENAI_API_KEY is not set. Add it in Settings → Secrets (Cloud) or your local .env.")
+    st.stop()  # stop rendering instead of raising an exception
 
 MAX_MB = 10
 MAX_BYTES = MAX_MB * 1024 * 1024
