@@ -1,0 +1,10 @@
+streamlit==1.38.0
+pdfplumber==0.11.4
+pdf2image==1.17.0
+Pillow==10.4.0
+langchain==0.2.14
+langchain-openai==0.1.22
+langchain-community==0.2.12
+faiss-cpu==1.12.0
+tiktoken>=0.8.0
+python-dotenv==1.0.1
