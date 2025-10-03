@@ -40,6 +40,7 @@ echo "OPENAI_API_KEY=sk-your-key-here" > .env
 	-	macOS: brew install poppler
 	-	Ubuntu/Debian: sudo apt-get install poppler-utils
 	-	Windows: install Poppler and add bin/ to PATH.
+
 •	OCR (fallback if the PDF has no selectable text)
 	-	ocrmypdf + Tesseract:
 	-	macOS: brew install ocrmypdf tesseract
