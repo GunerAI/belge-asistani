@@ -1,73 +1,68 @@
-# 📄 Belge Asistanı — Streamlit PDF Q&A
+# 📄 PDF Uploader & Reader (Streamlit)
 
-This project is a **Streamlit application** that allows users to upload a PDF file, preview it, extract text, and then **ask questions** about the content using **LangChain** and **OpenAI**.  
-It also supports chat-style interaction with memory, additional PDF utilities, and extra features for usability.
-
----
-
-## 🎯 Features
-
-### ✅ Core Requirements (70 pts)
-- **PDF Upload**  
-  - Accepts only `.pdf` files (max 10 MB)  
-  - Validates and confirms successful upload  
-  - Rejects other file types  
-
-- **PDF Processing**  
-  - Extracts text using `pdfplumber` (or OCR fallback)  
-  - Displays extracted text and handles empty/unreadable PDFs  
-  - Provides error handling and feedback  
-
-- **Q&A System**  
-  - Accepts user questions  
-  - Uses LangChain and OpenAI to generate answers based on PDF content  
-  - Includes PDF content in the prompt  
-  - Maintains **conversation history (memory)**  
-
-- **Streamlit UI**  
-  - Clean, user-friendly design  
-  - Chat-style messaging with `st.chat_message`  
-  - Shows PDF details (filename, size, total pages, metadata)  
-
-### 🌟 Extra Features (30 pts)
-Implemented **more than two** extra features:
-- 📑 **Page Count Display** — Shows total pages and selected page range  
-- 🧠 **Different Models** — Choose OpenAI model & temperature from sidebar  
-- 👁 **PDF Preview** — First page image preview (via `pdf2image` + Poppler)  
-- 🧹 **Clear Chat** — Button to reset conversation history  
-- 🧮 **Character/Word Count** — Text statistics (words, chars, lines, avg word length, estimated reading time)  
-- 💾 **Chat Download** — Export chat history as TXT or JSON  
+Upload a PDF, preview page 1, extract clean text, see quick stats, and **chat with your document** using an OpenAI-backed Q&A chain (LangChain + FAISS).
 
 ---
 
-## 🛠 Tech Stack
-
-- [Streamlit](https://streamlit.io/) — UI framework  
-- [LangChain](https://www.langchain.com/) — LLM orchestration  
-- [OpenAI API](https://platform.openai.com/) — LLM provider  
-- [pdfplumber](https://pypi.org/project/pdfplumber/) — PDF text extraction  
-- [FAISS](https://github.com/facebookresearch/faiss) — Vector similarity search  
-- [pdf2image](https://github.com/Belval/pdf2image) — PDF preview rendering  
-- [python-dotenv](https://github.com/theskumar/python-dotenv) — Environment variable management  
+## ✨ Features
+- Drag-and-drop **PDF upload** (up to 10 MB)
+- **First-page preview** (via `pdf2image` — Poppler required)
+- Robust **text extraction & cleanup** (pdfplumber + heuristics, optional OCR fallback)
+- **Per-document vector index** (FAISS) with **conversational Q&A** (LangChain)
+- **Chat history export** (TXT/JSON)
+- Tweakable **models, temperature, tokens**, and **embedding model** from the sidebar
 
 ---
 
-## 📦 Installation
+## 🚀 Quickstart (Local)
 
-Clone the repository and set up your environment:
-
+### 1) Clone & enter the project
 ```bash
-git clone https://github.com/GunerAI/belge-asistani.git
-cd belge-asistani
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
 ```
-
-# Create virtual environment
+### 2) Python env & dependencies
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-```
-
-```bash
-# Install dependencies
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -U pip
 pip install -r requirements.txt
 ```
+
+### 3) Secrets / API key
+Create a .env file in the project root:
+```bash
+echo "OPENAI_API_KEY=sk-your-key-here" > .env
+```
+
+### 4) (Optional) Enable preview / OCR
+•	Poppler (for pdf2image preview)
+	-	macOS: brew install poppler
+	-	Ubuntu/Debian: sudo apt-get install poppler-utils
+	-	Windows: install Poppler and add bin/ to PATH.
+•	OCR (fallback if the PDF has no selectable text)
+	-	ocrmypdf + Tesseract:
+	-	macOS: brew install ocrmypdf tesseract
+	-	Ubuntu/Debian: sudo apt-get install ocrmypdf tesseract-ocr
+
+### 5) Run
+```bash
+streamlit run app.py
+```
+
+## 🧭 How to Use
+1.	Upload a PDF (≤10 MB).
+2.	Inspect the page-1 preview, metadata, and extracted text preview.
+3.	Review Text Statistics or download the extracted text.
+4.	Ask questions in “💬 Ask Questions about this PDF” — answers cite page numbers when relevant.
+5.	Export chat history from the sidebar (TXT/JSON).
+
+## 📷 Screenshots
+
+
+
+
+
+
+
+
